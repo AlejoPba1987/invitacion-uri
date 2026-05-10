@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uriel Beltrán - MIS 18</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Montserrat:wght@100;300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --gold: #d4af37;
+            --light-gold: #fbf5b7;
+            --dark-gold: #8a6d3b;
+            --black: #050505;
+        }
+
+        * {
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+
+        body {
+            background-color: var(--black);
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .font-exotic { font-family: 'Cinzel Decorative', cursive; }
+
+        .gold-text {
+            background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.3));
+        }
+
+        .gold-button {
+            background: linear-gradient(45deg, #8a6d3b, #d4af37, #fbf5b7);
+            background-size: 200% 200%;
+            animation: gradientMove 3s ease infinite;
+            color: black;
+            font-weight: 700;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 24px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+        }
+
+        .shine {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shine::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            animation: shineEffect 4s infinite;
+        }
+
+        @keyframes shineEffect {
+            0% { left: -100%; transition-property: left; }
+            100% { left: 100%; transition-property: left; }
+        }
+
+        /* Scroll Smooth */
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body>
+
+    <canvas id="particles-js"></canvas>
+
+    <!-- HERO SECTION -->
+    <section class="relative min-h-screen flex flex-col items-center justify-center text-center p-6 z-10">
+        <div class="animate__animated animate__zoomIn">
+            <p class="text-xs tracking-[0.8em] text-gray-400 uppercase mb-8 animate__animated animate__fadeInDown animate__delay-1s">
+                Te invito a mi celebración
+            </p>
+            
+            <div class="relative inline-block mb-4">
+                <span class="text-[10rem] md:text-[14rem] font-exotic gold-text leading-none opacity-20 absolute -top-16 left-1/2 -translate-x-1/2">
+                    18
+                </span>
+                <h1 class="text-6xl md:text-8xl font-exotic gold-text mb-2 animate__animated animate__fadeInUp">
+                    Uriel
+                </h1>
+                <h1 class="text-6xl md:text-8xl font-exotic gold-text animate__animated animate__fadeInUp animate__delay-1s">
+                    Beltrán
+                </h1>
+            </div>
+
+            <div class="h-[2px] w-24 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mx-auto my-8"></div>
+            
+            <p class="text-lg md:text-xl font-light tracking-widest text-white/80 animate__animated animate__fadeIn animate__delay-2s">
+                EL INICIO DE UNA NUEVA ETAPA
+            </p>
+        </div>
+
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-50">
+            <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+        </div>
+    </section>
+
+    <section class="relative z-10 py-10 px-6">
+        <div class="max-w-4xl mx-auto glass-card p-8 text-center shine">
+            <h3 class="text-sm tracking-[0.4em] uppercase mb-8 text-gold">Tiempo restante</h3>
+            <div id="countdown" class="grid grid-cols-4 gap-4">
+                <div class="flex flex-col">
+                    <span id="days" class="text-3xl md:text-5xl font-bold">00</span>
+                    <span class="text-[10px] uppercase text-gray-500 mt-2">Días</span>
+                </div>
+                <div class="flex flex-col">
+                    <span id="hours" class="text-3xl md:text-5xl font-bold">00</span>
+                    <span class="text-[10px] uppercase text-gray-500 mt-2">Horas</span>
+                </div>
+                <div class="flex flex-col">
+                    <span id="minutes" class="text-3xl md:text-5xl font-bold">00</span>
+                    <span class="text-[10px] uppercase text-gray-500 mt-2">Mins</span>
+                </div>
+                <div class="flex flex-col">
+                    <span id="seconds" class="text-3xl md:text-5xl font-bold gold-text">00</span>
+                    <span class="text-[10px] uppercase text-gray-500 mt-2">Segs</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="relative z-10 py-20 px-6 grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <!-- CUÁNDO -->
+        <div class="glass-card p-10 flex flex-col items-center text-center space-y-4 hover:scale-105 transition-transform">
+            <div class="w-12 h-12 border border-gold/50 rounded-full flex items-center justify-center text-gold mb-4">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+            </div>
+            <h4 class="font-exotic text-xl gold-text uppercase">¿Cuándo?</h4>
+            <p class="text-2xl font-bold">27 de Junio, 2026</p>
+            <p class="text-gray-400">A partir de las 21:00 hs</p>
+            <button onclick="addToCalendar()" class="text-[10px] uppercase tracking-widest text-gold border border-gold/30 px-4 py-2 rounded-full mt-4 hover:bg-gold hover:text-black transition">Agendar</button>
+        </div>
+
+        <!-- DÓNDE -->
+        <div class="glass-card p-10 flex flex-col items-center text-center space-y-4 hover:scale-105 transition-transform">
+            <div class="w-12 h-12 border border-gold/50 rounded-full flex items-center justify-center text-gold mb-4">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
+            </div>
+            <h4 class="font-exotic text-xl gold-text uppercase">¿Dónde?</h4>
+            <p class="text-2xl font-bold">Salón SONIAR</p>
+            <p class="text-gray-400">Rosales esq. Santa Ana<br>Almirante Brown</p>
+            <a href="https://maps.app.goo.gl/uX3L3R3y" target="_blank" class="text-[10px] uppercase tracking-widest text-gold border border-gold/30 px-4 py-2 rounded-full mt-4 hover:bg-gold hover:text-black transition">Como llegar</a>
+        </div>
+    </section>
+
+    <section class="relative z-10 py-10 px-6">
+        <div class="max-w-xl mx-auto glass-card p-12 text-center bg-gradient-to-br from-black to-[#1a1a1a] shine">
+            <div class="mb-6 text-gold">
+                <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path>
+                </svg>
+            </div>
+            <h3 class="font-exotic text-2xl gold-text mb-4">Muestra de afecto</h3>
+            <p class="text-gray-400 text-sm mb-8 leading-relaxed">
+                Tu presencia es mi mejor regalo, pero si deseas obsequiarme algo y no sabes qué, puedes ayudarme a cumplir mis sueños con una transferencia.
+            </p>
+            <div class="bg-black/50 p-6 rounded-2xl border border-gold/20 inline-block w-full max-w-sm">
+                <p class="text-[10px] uppercase tracking-widest text-gold mb-2">Mi Alias</p>
+                <p id="aliasText" class="text-3xl font-bold tracking-widest text-white mb-4">URIBELTRAN</p>
+                <button onclick="copyAlias()" class="text-xs bg-gold/10 text-gold px-4 py-2 rounded-lg border border-gold/20 active:scale-95 transition">
+                    Copiar Alias
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="relative z-10 py-32 px-6 text-center">
+        <h2 class="font-exotic text-3xl md:text-5xl gold-text mb-8">¿Me acompañas?</h2>
+        <p class="text-gray-500 uppercase tracking-[0.3em] text-xs mb-12">Confirmar antes del 15 de Junio</p>
+        
+        <a href="https://wa.me/5491170644516?text=Hola%20Uriel!%20Confirmo%20mi%20asistencia%20a%20tus%2018.%20Mi%20nombre%20es:%20" 
+           class="gold-button inline-flex items-center gap-3 px-10 py-5 rounded-full text-lg shadow-[0_0_30px_rgba(212,175,55,0.4)] hover:shadow-[0_0_50px_rgba(212,175,55,0.6)] transition-all">
+           CONFIRMAR POR WHATSAPP
+           <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="relative z-10 py-10 border-t border-white/5 text-center">
+        <p class="text-white/20 text-[10px] tracking-[0.5em] font-light">URIEL BELTRÁN · EST. 2008 · 2026</p>
+    </footer>
+
+    <script>
+        // Lógica de Partículas de Oro
+        const canvas = document.getElementById('particles-js');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        class Particle {
+            constructor() {
+                this.init();
+            }
+            init() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.1;
+                this.speedY = Math.random() * 0.5 + 0.1;
+                this.speedX = (Math.random() - 0.5) * 0.2;
+                this.opacity = Math.random() * 0.5 + 0.1;
+            }
+            update() {
+                this.y -= this.speedY;
+                this.x += this.speedX;
+                if (this.y < 0) this.init();
+            }
+            draw() {
+                ctx.fillStyle = `rgba(212, 175, 55, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function createParticles() {
+            for (let i = 0; i < 100; i++) particles.push(new Particle());
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+
+        // Lógica de la Cuenta Regresiva
+        function updateTimer() {
+            const eventDate = new Date("June 27, 2026 21:00:00").getTime();
+            const now = new Date().getTime();
+            const diff = eventDate - now;
+
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = d.toString().padStart(2, '0');
+            document.getElementById("hours").innerText = h.toString().padStart(2, '0');
+            document.getElementById("minutes").innerText = m.toString().padStart(2, '0');
+            document.getElementById("seconds").innerText = s.toString().padStart(2, '0');
+        }
+
+        // Funciones de utilidad
+        function copyAlias() {
+            const alias = "URIBELTRAN";
+            const dummy = document.createElement("textarea");
+            document.body.appendChild(dummy);
+            dummy.value = alias;
+            dummy.select();
+            document.execCommand("copy");
+            document.body.removeChild(dummy);
+            
+            const btn = event.target;
+            const originalText = btn.innerText;
+            btn.innerText = "¡COPIADO!";
+            btn.classList.add('bg-gold', 'text-black');
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.classList.remove('bg-gold', 'text-black');
+            }, 2000);
+        }
+
+        function addToCalendar() {
+            const event = {
+                title: 'Cumple de 18 Uriel Beltrán',
+                location: 'Salón SONIAR, Rosales esq. Santa Ana, San Jose',
+                description: '¡Festejamos los 18 de Uriel!',
+                start: '20260627T210000',
+                end: '20260628T050000'
+            };
+            const url = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.title)}&dates=${event.start}/${event.end}&details=${encodeURIComponent(event.description)}&location=${encodeURIComponent(event.location)}`;
+            window.open(url, '_blank');
+        }
+
+        // Inicio
+        window.onload = () => {
+            resize();
+            createParticles();
+            animateParticles();
+            setInterval(updateTimer, 1000);
+            updateTimer();
+        };
+        window.onresize = resize;
+    </script>
+</body>
+</html>
