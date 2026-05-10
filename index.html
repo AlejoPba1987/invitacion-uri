@@ -6,7 +6,7 @@
     <title>Uriel Beltrán - MIS 18</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Montserrat:wght@100;300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Playfair+Display:wght@900&family=Montserrat:wght@100;300;400;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -35,7 +35,46 @@
             background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.3));
+            filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.4));
+            display: inline-block;
+        }
+
+        /* Rediseño del 18 con una forma más estilizada y artística */
+        .big-number {
+            font-size: 25rem; 
+            line-height: 1;
+            position: absolute;
+            top: 48%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            font-family: 'Playfair Display', serif; /* Fuente más elegante y contrastada para el número */
+            font-weight: 900;
+            font-style: italic; /* El itálico le da una forma más dinámica y veloz */
+            pointer-events: none;
+            color: transparent;
+            -webkit-text-stroke: 1.5px rgba(212, 175, 55, 0.4);
+            text-shadow: 0 0 40px rgba(212, 175, 55, 0.1);
+            animation: breathe 10s ease-in-out infinite;
+            letter-spacing: -0.05em;
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: translate(-50%, -50%) scale(1) rotate(-2deg); opacity: 0.3; }
+            50% { transform: translate(-50%, -50%) scale(1.15) rotate(2deg); opacity: 0.7; }
+        }
+
+        /* Ajuste para pantallas pequeñas */
+        @media (max-width: 768px) {
+            .big-number {
+                font-size: 55vw;
+                -webkit-text-stroke: 1px rgba(212, 175, 55, 0.5);
+            }
+        }
+
+        .name-container {
+            margin-top: 5vh; /* Espacio extra arriba para no amontonar */
+            margin-bottom: 5vh;
         }
 
         .gold-button {
@@ -100,39 +139,46 @@
 
     <canvas id="particles-js"></canvas>
 
-    <!-- HERO SECTION -->
-    <section class="relative min-h-screen flex flex-col items-center justify-center text-center p-6 z-10">
-        <div class="animate__animated animate__zoomIn">
-            <p class="text-xs tracking-[0.8em] text-gray-400 uppercase mb-8 animate__animated animate__fadeInDown animate__delay-1s">
-                Te invito a mi celebración
-            </p>
-            
-            <div class="relative inline-block mb-4">
-                <span class="text-[10rem] md:text-[14rem] font-exotic gold-text leading-none opacity-20 absolute -top-16 left-1/2 -translate-x-1/2">
-                    18
-                </span>
-                <h1 class="text-6xl md:text-8xl font-exotic gold-text mb-2 animate__animated animate__fadeInUp">
-                    Uriel
-                </h1>
-                <h1 class="text-6xl md:text-8xl font-exotic gold-text animate__animated animate__fadeInUp animate__delay-1s">
-                    Beltrán
-                </h1>
-            </div>
-
-            <div class="h-[2px] w-24 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mx-auto my-8"></div>
-            
-            <p class="text-lg md:text-xl font-light tracking-widest text-white/80 animate__animated animate__fadeIn animate__delay-2s">
-                EL INICIO DE UNA NUEVA ETAPA
+    <!-- HERO SECTION REDISEÑADA -->
+    <section class="relative min-h-screen flex flex-col items-center justify-between text-center p-6 z-10 py-20">
+        
+        <div class="animate__animated animate__fadeInDown">
+            <p class="text-[10px] tracking-[0.8em] text-gold/60 uppercase mb-4">
+                Estás invitado a celebrar los
             </p>
         </div>
 
-        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-50">
-            <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="relative w-full flex flex-col items-center justify-center flex-grow">
+            <!-- El 18 ahora es un elemento de fondo masivo y artístico -->
+            <span class="big-number animate__animated animate__zoomIn">18</span>
+            
+            <div class="name-container animate__animated animate__fadeInUp animate__delay-1s">
+                <h1 class="text-7xl md:text-9xl font-exotic gold-text leading-tight tracking-tighter">
+                    Uriel
+                </h1>
+                <br>
+                <h1 class="text-7xl md:text-9xl font-exotic gold-text leading-tight tracking-tighter">
+                    Beltrán
+                </h1>
+            </div>
+        </div>
+
+        <div class="animate__animated animate__fadeInUp animate__delay-2s w-full">
+            <div class="h-[1px] w-32 bg-gradient-to-r from-transparent via-gold to-transparent mx-auto mb-6"></div>
+            <p class="text-lg md:text-xl font-light tracking-[0.4em] text-white/70 uppercase">
+                Mis Dieciocho Años
+            </p>
+            <p class="text-sm text-gold/50 mt-2 italic tracking-widest">Sábado 27 de Junio</p>
+        </div>
+
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 animate-bounce opacity-40">
+            <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
             </svg>
         </div>
     </section>
 
+    <!-- SECCIÓN CONTADOR -->
     <section class="relative z-10 py-10 px-6">
         <div class="max-w-4xl mx-auto glass-card p-8 text-center shine">
             <h3 class="text-sm tracking-[0.4em] uppercase mb-8 text-gold">Tiempo restante</h3>
